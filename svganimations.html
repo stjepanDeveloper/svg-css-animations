@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg animations</title>
+
+
+    <!-- shapes for the animation made in figma; you can create shapes and pick color you like -->
+    <style>
+        :root {
+            --dark-color: #B745EC;
+            --light-color: #F2C34A;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+        
+        #darkGroup {
+            fill: var(--dark-color);        
+        }
+        #lightGroup {
+            fill: var(--light-color);
+        }
+
+        #dark1,
+        #light1,
+        #dark2 {
+            transition: all 1s ease;
+        }
+        #dark2 {
+            transform: translateX(-100%);
+        }
+        svg:hover #light1 {
+            transform: translateX(20%);
+        }
+        svg:hover #dark1 {
+            transform: translateX(40%);
+            opacity: 0;
+        }
+        svg:hover #dark2 {
+            transform: translateX(0%);
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- svg elements ;you can get them by inspecting the website with a cool animation you like-->
+
+    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="svgAnimations" clip-path="url(#clip0_1_3)">
+        <g id="lightGroup">
+        <path id="light1" d="M34.38 50.5867C36.9506 52.1405 36.9553 55.8674 34.3888 57.4278L16.1191 68.5352C13.4554 70.1547 10.0451 68.2398 10.0411 65.1225L10.0127 42.9544C10.0087 39.837 13.4141 37.9134 16.0819 39.526L34.38 50.5867Z" />
+        </g>
+        <g id="darkGroup">
+        <path id="dark2" d="M54.38 50.5867C56.9506 52.1405 56.9553 55.8674 54.3888 57.4278L36.1191 68.5352C33.4554 70.1547 30.0451 68.2398 30.0411 65.1225L30.0127 42.9544C30.0087 39.837 33.4141 37.9134 36.0819 39.526L54.38 50.5867Z" />
+        <path id="dark1" d="M34.38 50.5867C36.9506 52.1405 36.9553 55.8674 34.3888 57.4278L16.1191 68.5352C13.4554 70.1547 10.0451 68.2398 10.0411 65.1225L10.0127 42.9544C10.0087 39.837 13.4141 37.9134 16.0819 39.526L34.38 50.5867Z" />
+        </g>
+        </g>
+        <defs>
+        <clipPath id="clip0_1_3">
+        <rect width="120" height="100" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+
+
+        <!-- short Javascript function to change color on click-->
+        <script>
+
+            const svg = document.getElementById('svgAnimations');
+
+            svg.onclick = (e) => {
+                const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple'] //array of colors to toggle on click
+                const randomcolors = () => colors[Math.floor(Math.random() * colors.length)]; //function to get the random color
+                document.documentElement.style.cssText = `
+                --dark-color: ${randomcolors()};
+                --light-color: ${randomcolors()};
+                `
+            }
+
+        </script>
+</body>
+</html>
